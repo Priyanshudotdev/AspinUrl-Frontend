@@ -1,27 +1,42 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
 import { AuthProvider } from "./context/Auth";
-import LandingPage from "./pages/LandingPage";
 import Header from "./components/Header";
-import Auth from "./pages/Auth";
-import Dashboard from "./pages/Dashboard";
-import LinkCard from "./pages/LinkPage";
-import LinkPage from "./pages/LinkPage";
 import { Toast } from "./components/ui/toast";
+import { Suspense, lazy } from "react";
+import SkeletonCard from "./components/SkeletonCard";
+import { ToastContainer } from "react-toastify";
 
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Auth = lazy(() => import("./pages/Auth"));
+const LandingPage = lazy(() => import("./pages/LandingPage"));
+const LinkPage = lazy(() => import("./pages/LinkPage"));
+import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   return (
     <AuthProvider>
       <Router>
         <Header />
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/link" element={<LinkPage />} />
-          <Route path="/toast" element={<Toast />} />
-        </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+        <Suspense fallback={<SkeletonCard />}>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/link" element={<LinkPage />} />
+            <Route path="/toast" element={<Toast />} />
+          </Routes>
+        </Suspense>
       </Router>
     </AuthProvider>
   );

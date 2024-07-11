@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { useAuth } from "../hooks/useAuth";
@@ -9,11 +9,16 @@ const LandingPage = () => {
 
   const [longLink, setLongLink] = useState<string>("");
 
-  const userId = currentUser?.uid;
   const navigate = useNavigate();
 
   const handleCreateShortLink = () => {
-    navigate(`/dashboard?url=${longLink}`);
+    if (!loading) {
+      if (currentUser?.uid) {
+        navigate(`/dashboard?url=${longLink}`);
+      } else {
+        navigate("/auth");
+      }
+    }
   };
 
   return (
