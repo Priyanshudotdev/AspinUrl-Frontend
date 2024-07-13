@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "./ui/button";
-import { Copy, Download, Trash } from "lucide-react";
 import axios from "axios";
+import { Copy, Download, Trash } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import SkeletonCard from "./SkeletonCard";
+import { Button } from "./ui/button";
+
+// code.nexus.com
 
 interface LinkData {
   qrCode: string;
@@ -72,7 +74,7 @@ const SingleLink = ({ urlTitle }: { urlTitle: string | null }) => {
                 {linkData.urlTitle}
               </span>
               <span className="text-xl lg:text-2xl text-blue-400 font-bold tracking-wide hover:underline cursor-pointer">
-                https://aspinUrl.vercel.app/
+                http://localhost:5173/
                 {linkData.customUrl || linkData.shortId}
               </span>
               <span className="text-lg lg:text-xl hover:underline tracking-wide cursor-pointer">

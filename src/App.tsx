@@ -11,6 +11,7 @@ const Auth = lazy(() => import("./pages/Auth"));
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const LinkPage = lazy(() => import("./pages/LinkPage"));
 import "react-toastify/dist/ReactToastify.css";
+import RedirectLink from "./pages/RedirectLink";
 const App = () => {
   return (
     <AuthProvider>
@@ -35,6 +36,7 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/link" element={<LinkPage />} />
             <Route path="/toast" element={<Toast />} />
+            <Route path="/:id" element={<RedirectLink />} />
           </Routes>
         </Suspense>
       </Router>

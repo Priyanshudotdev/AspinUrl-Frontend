@@ -45,7 +45,7 @@ const LinkCard = ({
   const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
   const formattedDateTime = date.toLocaleDateString("en-US", options);
 
-  const shortLink = `https://aspinUrl.vercel.app/${customUrl || shortUrl}`;
+  const shortLink = `http://localhost:5173/${customUrl || shortUrl}`;
 
   const downlodQrCode = async () => {
     setLoading(true);
@@ -124,7 +124,7 @@ const LinkCard = ({
           {linkTitle || ""}
         </span>
         <a
-          href={originalUrl}
+          // href={originalUrl}
           target="_blank"
           className=" text-sm md:text-xl text-blue-400 font-bold tracking-wide hover:underline cursor-pointer break-words truncate"
         >
