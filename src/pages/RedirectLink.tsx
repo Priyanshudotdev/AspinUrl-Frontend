@@ -16,7 +16,7 @@ const RedirectLink = () => {
       });
   }, [urlId]);
 
-  return;
+  return <></>;
 };
 
 export default RedirectLink;
