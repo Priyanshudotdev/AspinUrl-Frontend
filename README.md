@@ -83,6 +83,6 @@ We have some ongoing UI issues and enhancements that need attention. If you are 
 
 ## Contact
 
-linkedIn - `[https://www.linkedin.com/in/priyanshu-li](https://www.linkedin.com/in/priyanshu-li)`
+linkedIn - https://www.linkedin.com/in/priyanshu-li
 
-twitter/X - `[https://x.com/Priyanshu_twi](https://x.com/Priyanshu_twi)`
+twitter/X - https://x.com/Priyanshu_twi
