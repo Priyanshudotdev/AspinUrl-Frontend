@@ -124,7 +124,7 @@ const LinkCard = ({
           {linkTitle || ""}
         </span>
         <a
-          // href={originalUrl}
+          onClick={() => navigate(`/${customUrl || shortUrl}`)}
           target="_blank"
           className=" text-sm md:text-xl text-blue-400 font-bold tracking-wide hover:underline cursor-pointer break-words truncate"
         >
