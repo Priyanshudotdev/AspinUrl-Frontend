@@ -40,7 +40,7 @@ const SingleLink = ({ urlTitle }: { urlTitle: string | null }) => {
   useEffect(() => {
     if (currentUser && !loading) {
       axios
-        .post("http://localhost:3000/api/v1/url/link", {
+        .post(import.meta.env.VITE_SERVER_FETCH_LINK, {
           urlTitle,
           userId: currentUser.uid,
         })

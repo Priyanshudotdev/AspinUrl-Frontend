@@ -35,6 +35,27 @@ const Dashboard = () => {
   const [isSkeletonOpen, setIsSkeletonOpen] = useState<boolean>(false);
   const [barLoader, setBarLoader] = useState<boolean>(false);
 
+  const reFetchLinks = () => {
+    if (currentUser?.uid) {
+      setIsSkeletonOpen(true);
+      setBarLoader(true);
+      axios
+        .post(`${import.meta.env.VITE_SERVER_LINKS}`, {
+          userId: currentUser?.uid,
+        })
+        .then((res) => {
+          setLinks(res.data.links);
+          setIsSkeletonOpen(false);
+          setBarLoader(false);
+        })
+        .catch((error) => {
+          setError(error.message);
+          setIsSkeletonOpen(false);
+          setBarLoader(false);
+        });
+    }
+  };
+
   useEffect(() => {
     if (currentUser?.uid) {
       setIsSkeletonOpen(true);
@@ -44,6 +65,7 @@ const Dashboard = () => {
           userId: currentUser?.uid,
         })
         .then((res) => {
+          console.log(res.data.links);
           setLinks(res.data.links);
           setIsSkeletonOpen(false);
           setBarLoader(false);
@@ -81,7 +103,7 @@ const Dashboard = () => {
 
         <div className="flex justify-between mt-3 px-2">
           <h1 className="text-3xl font-extrabold">My Links</h1>
-          <CreateLink url={url || null} />
+          <CreateLink onLinkCreated={reFetchLinks} url={url || null} />
         </div>
 
         <div className="relative">

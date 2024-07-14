@@ -20,7 +20,13 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { ClipLoader } from "react-spinners";
 
-const CreateLink = ({ url }: { url: string | null }) => {
+const CreateLink = ({
+  url,
+  onLinkCreated,
+}: {
+  url: string | null;
+  onLinkCreated: () => void;
+}) => {
   const [urlTitle, setUrlTitle] = useState<string>("");
   const [longUrl, setLongUrl] = useState<string>(() => {
     if (!url) {
@@ -32,6 +38,7 @@ const CreateLink = ({ url }: { url: string | null }) => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [createdDate, setCreatedDate] = useState<string | null>(null);
   const { currentUser } = useAuth();
 
   const navigate = useNavigate();
@@ -75,7 +82,10 @@ const CreateLink = ({ url }: { url: string | null }) => {
         setLoading(false);
         setIsDialogOpen(false);
         clearAll();
-        console.log("RESPONSE", res);
+        if (onLinkCreated) {
+          onLinkCreated();
+        }
+        setCreatedDate(res.data.link);
       })
       .catch((err) => {
         setLoading(false);
@@ -139,7 +149,7 @@ const CreateLink = ({ url }: { url: string | null }) => {
             variant={"outline"}
             className="  text-lg hover:opacity-[0.9]"
           >
-            {loading ? <ClipLoader /> : "Create"}
+            {loading ? <ClipLoader color="white" size={"20"} /> : "Create"}
           </Button>
         </DialogContent>
       </Dialog>

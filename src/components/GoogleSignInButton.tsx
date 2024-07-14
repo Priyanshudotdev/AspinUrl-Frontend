@@ -17,7 +17,6 @@ const GoogleSignInButton: React.FC = () => {
           return null;
         }
       })
-      // uIkfVxsbcKaLJdmrIt6Y3wzvAvx1
       .catch((err) => console.log(`Error During Loggging`, err));
   };
 
